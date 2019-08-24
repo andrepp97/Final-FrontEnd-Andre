@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+
+.navBro {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.logoBro {
+    color: white;
+    text-decoration: none;
+}
+.logoBro:hover {
+    color:  white;
+}
