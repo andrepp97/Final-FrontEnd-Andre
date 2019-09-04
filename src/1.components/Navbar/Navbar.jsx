@@ -1,23 +1,16 @@
 import React, { Component } from 'react'
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
-} from 'reactstrap';
-import './Navbar.css'
 import { connect } from "react-redux"
-import { Link } from "react-router-dom"
-import { userLogout } from '../../redux/1.actions';
-import swal from 'sweetalert';
+import { userLogout } from '../../redux/1.actions'
+import {
+    MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
+    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBCardText, MDBBtn, MDBTooltip, MDBBadge
+} from "mdbreact"
+import { Link } from 'react-router-dom'
+import Cookie from "universal-cookie"
+import { getCartQty } from '../../redux/1.actions'
 
+// Cookie
+let cookieObj = new Cookie()
 
 class NavbarBro extends Component {
     state = {
@@ -25,63 +18,113 @@ class NavbarBro extends Component {
     }
 
     onLogout = () => {
-        this.props.userLogout('')
-        swal("Anda telah Logout!", "", "info");
+        cookieObj.remove('userData')
+        this.props.userLogout()
+    }
+
+    componentDidMount() {
+        this.props.getCartQty(this.props.userObj.id)
     }
 
 
     render() {
         return (
-            <div className='navBro'>
+            <div>
+                <MDBNavbar color="deep-orange" scrolling fixed="top" dark expand="md">
+                    <MDBNavbarBrand>
+                        <MDBNavLink to='/'>
+                            <strong className="white-text">tokoaku</strong>
+                        </MDBNavLink>
+                    </MDBNavbarBrand>
 
-                <Navbar color="dark" dark expand="md">
-                    <Link className='logoBro' to='/'><NavbarBrand>tokoaku</NavbarBrand></Link>
-                    <NavbarToggler onClick={() => this.setState({navOpen : !this.state.navOpen})} />
-                    <Collapse isOpen={this.state.navOpen} navbar>
-                        <Nav className="ml-auto" navbar>
+                    <MDBNavbarToggler onClick={() => this.setState({ navOpen: !this.state.navOpen })} />
+                    <MDBCollapse id="navbarCollapse" isOpen={this.state.navOpen} navbar>
+                        <MDBNavbarNav right>
                             {
-                                this.props.namaUser !== '' && this.props.roleUser !== ''
+                                (this.props.userObj.username) && (this.props.userObj.role)
                                 ?
                                 <>
-                                    <NavItem>
-                                        <NavLink>{this.props.roleUser}</NavLink>
-                                    </NavItem>
-                                    <UncontrolledDropdown nav inNavbar>
-                                            <DropdownToggle nav caret className='badge-secondary rounded' style={{color:'white'}}>
-                                            {this.props.namaUser}&nbsp;
-                                        </DropdownToggle>
-                                        <DropdownMenu right>
-                                            <DropdownItem>
-                                                Edit Profile
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                My Cart
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                Shopping History
-                                            </DropdownItem>
-                                            <DropdownItem divider />
-                                            <DropdownItem onClick={this.onLogout} >
-                                                Logout
-                                            </DropdownItem>
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
+                                    {
+                                        this.props.userObj.role === 'admin'
+                                        ?
+                                        <MDBTooltip placement="left">
+                                            <Link to='/adminDashboard'>
+                                                <MDBBtn color='none'><MDBIcon icon="tachometer-alt" style={{marginTop:'2px', color:'white', fontSize:'120%'}} /></MDBBtn>
+                                            </Link>
+                                            <div>Admin Dashboard</div>
+                                        </MDBTooltip>
+                                        :
+                                        <MDBTooltip placement="bottom">
+                                            <Link to='/Cart'>
+                                                    <MDBBadge color='dark' className='mr-n3 rounded-circle'>
+                                                        {
+                                                            this.props.userCart > 0
+                                                            ?
+                                                            this.props.userCart
+                                                            :
+                                                            null
+                                                        }
+                                                    </MDBBadge>
+                                                <MDBBtn color='none'><MDBIcon icon="shopping-basket" style={{ marginTop: '2px', color: 'white', fontSize: '120%' }} />
+                                                </MDBBtn>
+                                            </Link>
+                                            
+                                            {
+                                                this.props.userCart > 0
+                                                ?
+                                                <p>
+                                                    You have {this.props.userCart} items in your cart
+                                                </p>
+                                                :
+                                                <p>My Cart</p>
+                                            }
+                                        </MDBTooltip>
+                                    }
+
+
+                                    <MDBNavItem>
+                                        <MDBDropdown>
+                                            <MDBDropdownToggle nav caret>
+                                                <MDBIcon icon="user" style={{fontSize:'125%', marginTop:'7px', marginLeft:'5px'}} />
+                                            </MDBDropdownToggle>
+                                            <MDBDropdownMenu right className="dropdown-default">
+                                                <MDBCardText style={{paddingLeft:'24px'}}><span style={{color:'grey', fontSize:'12px'}}>Hello,</span><br/><strong>{this.props.userObj.username}</strong></MDBCardText>
+                                                <MDBDropdownItem divider></MDBDropdownItem>
+
+                                                <MDBDropdownItem className='dropItem' style={{fontSize:'14px'}}><MDBIcon icon="history" />
+                                                <Link style={{textDecoration:'none', marginLeft:'-6px'}} to='/history'>
+                                                    &nbsp;Shopping History
+                                                </Link>
+                                                </MDBDropdownItem>
+                                                
+                                                <MDBDropdownItem divider></MDBDropdownItem>
+                                                <MDBDropdownItem className='dropItem' style={{fontSize:'14px'}} onClick={this.onLogout}>
+                                                    <Link style={{textDecoration:'none', marginLeft:'-10px'}} to='/'>
+                                                        <MDBIcon icon="power-off" /> &nbsp;Logout
+                                                    </Link>
+                                                </MDBDropdownItem>
+                                            </MDBDropdownMenu>
+                                        </MDBDropdown>
+                                    </MDBNavItem>
                                 </>
                                 :
                                 <>
-                                    <NavItem>
-                                        <Link onClick={() => this.setState({navOpen : !this.state.navOpen})} to='/Login'><NavLink>Log In</NavLink></Link>
-                                    </NavItem>    
-                                    <NavItem>
-                                        <Link onClick={() => this.setState({navOpen : !this.state.navOpen})} to='/Register'><NavLink>Register</NavLink></Link>
-                                    </NavItem>      
+                                    <MDBNavItem>
+                                        <MDBNavLink to='/Login'>
+                                            <MDBBtn color="none" className='white-text'>Login</MDBBtn>
+                                        </MDBNavLink>
+                                    </MDBNavItem>    
+                                    <MDBNavItem>
+                                        <MDBNavLink to='/Register'>
+                                            <MDBBtn color="orange" className='white-text'>Register</MDBBtn>
+                                        </MDBNavLink>
+                                    </MDBNavItem>      
                                 </>
                             }
+                        </MDBNavbarNav>
+                    </MDBCollapse>
 
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-
+                </MDBNavbar>
             </div>
         )
     }
@@ -89,9 +132,9 @@ class NavbarBro extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        namaUser: state.user.username,
-        roleUser : state.user.role
+        userObj: state.user,
+        userCart: state.cart.cartLength
     }
 }
 
-export default connect(mapStateToProps, {userLogout})(NavbarBro)
+export default connect(mapStateToProps, {getCartQty, userLogout})(NavbarBro)
