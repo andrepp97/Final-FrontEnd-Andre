@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import { connect } from 'react-redux'
 import { urlApi } from '../../2.helpers/database'
-import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn } from 'mdbreact'
+import { Redirect } from 'react-router-dom'
+import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBModal, MDBModalHeader, MDBModalBody, MDBBadge }
+from 'mdbreact'
 
 
 class History extends Component {
     state = {
-        hisData : []
+        hisData : [],
+        editMode: false,
+        editItem: null
     }
 
     componentWillReceiveProps(newProps) {
@@ -60,7 +64,7 @@ class History extends Component {
                         <p className='mt-2'>{new Intl.NumberFormat('id-ID').format(val.totalPay)}</p>
                     </td>
                     <td className='text-center'>
-                        <MDBBtn color='indigo' className='white-text'>
+                        <MDBBtn color='indigo' className='white-text' onClick={() => this.setState({ editMode: true, editItem: val.items })}>
                             Details
                         </MDBBtn>
                     </td>
@@ -70,10 +74,58 @@ class History extends Component {
         return jsx
     }
 
+    getDetails = () => {
+        let silit = this.state.editItem.map((val, idx) => {
+            return(
+                <tr>
+                    <th scope='row'>
+                        <img src={val.img} alt="Item" height='50px' />
+                    </th>
+                    <td>
+                        <p className='mt-2'>{val.productName}</p>
+                    </td>
+                    <td>
+                        <p className='mt-2'>{new Intl.NumberFormat('id-ID').format(val.price)}</p>
+                    </td>
+                    <td>
+                        <MDBBadge style={{fontSize:'12px'}} color='deep-orange' className='text-center rounded-circle mt-2'>{val.quantity}</MDBBadge>
+                    </td>
+                </tr>
+            )
+        })
+        return silit
+    }
+
+
     
     render() {
+        if (this.props.userObj.role === '')
+            return <Redirect to="/" />
+
         return (
             <div className='container'>
+                {/* Modal */}
+                {this.state.editMode ?
+                    <MDBModal isOpen={this.state.editMode} centered>
+                        <MDBModalHeader toggle={() => this.setState({ editMode: false, editItem: null })}>
+                            Detail Pesanan
+                        </MDBModalHeader>
+                        <MDBModalBody className='p-4'>
+                            <MDBTable hover responsive>
+                                <MDBTableHead color='dark'>
+                                    <tr>
+                                        <th colSpan='2' className='text-center'>Items</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                    </tr>
+                                </MDBTableHead>
+                                <MDBTableBody>
+                                    {this.getDetails()}
+                                </MDBTableBody>
+                            </MDBTable>
+                        </MDBModalBody>
+                    </MDBModal> : null}
+
                 <div className='my-5'>&nbsp;</div>
                 <h2 className='text-center border-bottom pb-3'>Shopping History</h2>
                 <MDBTable hover responsive className="mt-4">

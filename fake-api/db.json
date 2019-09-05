@@ -1,0 +1,200 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "password",
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "username": "mas bambang",
+      "password": "asd",
+      "role": "user",
+      "id": 2
+    },
+    {
+      "username": "pak ogah",
+      "password": "asd",
+      "role": "user",
+      "id": 3
+    },
+    {
+      "username": "maria",
+      "password": "asd",
+      "role": "user",
+      "id": 4
+    }
+  ],
+  "products": [
+    {
+      "id": 4,
+      "nama": "Jersey Futsal",
+      "harga": 55000,
+      "category": "jersey",
+      "discount": 0,
+      "deskripsi": "Baselayer manset thumbhole panjang longsleeve PUMA jersey futsal",
+      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/3/12/32510680/32510680_511b6349-055c-4378-be0d-278be03c37ac_700_700.jpg"
+    },
+    {
+      "id": 5,
+      "nama": "Kaos Adios",
+      "harga": "125000",
+      "category": "kaos",
+      "discount": "15",
+      "deskripsi": "Kaos merk Adios dengan sablon fuck",
+      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/6/1/12569062/12569062_3e2b8df5-f767-4f08-948e-96c061cd9b7d_466_583.jpg"
+    },
+    {
+      "id": 6,
+      "nama": "Celana Formal Slimfit",
+      "harga": 175000,
+      "category": "celana",
+      "discount": 20,
+      "deskripsi": "Celana formal slimfit bahan terenak.",
+      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/6/3425805/3425805_093b0e12-8607-420c-88e0-970ff47d99f6_600_600.jpg"
+    },
+    {
+      "id": 7,
+      "nama": "Celana Renang",
+      "harga": "375000",
+      "category": "celana",
+      "discount": "50",
+      "deskripsi": "Durable and quick-drying jammer with sporty look",
+      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/6/28/248022/248022_9e935be6-47fa-48dc-b716-b62aab99c2b0_1080_1080.jpg"
+    },
+    {
+      "nama": "Kaos Turtleneck Longsleeve",
+      "harga": "45000",
+      "category": "kaos",
+      "discount": "0",
+      "deskripsi": "Bahan dijamin, dari catoon baby terry terbaik.",
+      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/7/26/215949803/215949803_e5827bcf-7816-46ff-8fae-c28e9373ba4c_700_700.jpg",
+      "id": 8
+    },
+    {
+      "nama": "Baju Koko Black Panther",
+      "harga": "100000",
+      "category": "baju",
+      "discount": "15",
+      "deskripsi": "Bahan katun dolby, motif bordir depan, belakang polos\nReady size M L XL XXL.",
+      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/5/31/587654/587654_12ab2c3c-e1d4-44eb-a17a-a3bc643561be_1000_1000.jpg",
+      "id": 9
+    },
+    {
+      "nama": "Jersey Gaming Bigetron",
+      "harga": "125000",
+      "category": "jersey",
+      "discount": "5",
+      "deskripsi": "Free Nickname (boleh custom lagi kalau ingin nambah lambang dsb)",
+      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/7/19/1344997/1344997_2ce57313-9ad6-463e-b401-b7c15c88bb5d_1080_1080.jpg",
+      "id": 10
+    },
+    {
+      "nama": "Skinny Jeans Black",
+      "harga": "175000",
+      "category": "celana",
+      "discount": "10",
+      "deskripsi": "*SEGERA LAKUKAN TRANSAKSI KARNA STOK TERBATAS\n**KONFIRMASI KETERSEDIAAN BARANG SEBELUM BERTRANSAKSI",
+      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/8/8/2083033/2083033_f00481c6-780c-4951-9a4d-6d01eae17560_1024_1024.jpg",
+      "id": 11
+    }
+  ],
+  "cart": [
+    {
+      "productId": 6,
+      "userId": 4,
+      "quantity": 1,
+      "price": 175000,
+      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/6/3425805/3425805_093b0e12-8607-420c-88e0-970ff47d99f6_600_600.jpg",
+      "discount": 20,
+      "productName": "Celana Formal Slimfit",
+      "id": 9
+    }
+  ],
+  "history": [
+    {
+      "userId": 3,
+      "items": [
+        {
+          "productId": 4,
+          "userId": 3,
+          "quantity": 2,
+          "price": 55000,
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/3/12/32510680/32510680_511b6349-055c-4378-be0d-278be03c37ac_700_700.jpg",
+          "discount": 0,
+          "productName": "Jersey Futsal",
+          "id": 4
+        },
+        {
+          "productId": 6,
+          "userId": 3,
+          "quantity": 1,
+          "price": 175000,
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/6/3425805/3425805_093b0e12-8607-420c-88e0-970ff47d99f6_600_600.jpg",
+          "discount": 20,
+          "productName": "Celana Formal Slimfit",
+          "id": 6
+        },
+        {
+          "productId": 11,
+          "userId": 3,
+          "quantity": 1,
+          "price": "175000",
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/8/8/2083033/2083033_f00481c6-780c-4951-9a4d-6d01eae17560_1024_1024.jpg",
+          "discount": "10",
+          "productName": "Skinny Jeans Black",
+          "id": 7
+        }
+      ],
+      "time": "2019-9-4",
+      "totalPrice": 407500,
+      "recipient": "Manuel",
+      "address": "Jl. Kita Masih Panjang",
+      "zipcode": "998877",
+      "totalPay": "410000",
+      "id": 1
+    },
+    {
+      "userId": 3,
+      "items": [
+        {
+          "productId": 7,
+          "userId": 3,
+          "quantity": 3,
+          "price": "375000",
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/6/28/248022/248022_9e935be6-47fa-48dc-b716-b62aab99c2b0_1080_1080.jpg",
+          "discount": "50",
+          "productName": "Celana Renang",
+          "id": 6
+        },
+        {
+          "productId": 8,
+          "userId": 3,
+          "quantity": 2,
+          "price": "45000",
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/7/26/215949803/215949803_e5827bcf-7816-46ff-8fae-c28e9373ba4c_700_700.jpg",
+          "discount": "0",
+          "productName": "Kaos Turtleneck Longsleeve",
+          "id": 7
+        },
+        {
+          "productId": 9,
+          "userId": 3,
+          "quantity": 1,
+          "price": "100000",
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/5/31/587654/587654_12ab2c3c-e1d4-44eb-a17a-a3bc643561be_1000_1000.jpg",
+          "discount": "15",
+          "productName": "Baju Koko Black Panther",
+          "id": 8
+        }
+      ],
+      "time": "2019-9-5",
+      "totalPrice": 737500,
+      "recipient": "Mas Kiwil",
+      "address": "Jl. Buntu",
+      "zipcode": "999",
+      "totalPay": "800000",
+      "id": 2
+    }
+  ]
+}

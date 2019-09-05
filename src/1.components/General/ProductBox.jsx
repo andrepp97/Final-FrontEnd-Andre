@@ -23,10 +23,10 @@ const ProductBox = (props) => {
 
         Axios.get(urlApi + `cart?userId=${props.userId}&productId=${props.id}`)
             .then((res) => {
-                if (res.data.length > 0) {
+                if (res.data.length) {
                     cartObj.quantity = parseInt(res.data[0].quantity) + 1
                     Axios.put(urlApi + 'cart/' + res.data[0].id, cartObj)
-                        .then((res) => {
+                        .then(res => {
                             swal('Success','Item added to cart', 'success')
                         })
                         .catch((err) => {

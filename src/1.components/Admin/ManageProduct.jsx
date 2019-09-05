@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import { connect } from "react-redux"
 import { Redirect } from 'react-router-dom'
-import swal from 'sweetalert'
+import { ToastContainer, toast } from 'react-toastify'
 import { urlApi } from '../../2.helpers/database'
 import { MDBModal, MDBModalBody, MDBModalFooter, MDBTooltip, MDBModalHeader, MDBIcon, MDBInput, MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBPagination, MDBPageItem, MDBPageNav, MDBCol, MDBRow } from 'mdbreact';
 
 
 class ManageProduct extends Component {
     state = {
-        modal14: false,
         productData: [],
         inputName: '',
         inputPrice: '',
@@ -21,13 +20,6 @@ class ManageProduct extends Component {
         page: 0,
         editMode: false,
         editItem: null
-    }
-
-    toggle = nr => () => {
-        let modalNumber = 'modal' + nr
-        this.setState({
-            [modalNumber]: !this.state[modalNumber]
-        });
     }
 
     componentDidMount() {
@@ -104,13 +96,13 @@ class ManageProduct extends Component {
                         inputImg : '',
                         inputDesc : ''
                     })
-                    swal('Success!', "Product added", 'success')
+                    toast.success('Product added!')
                 })
                 .catch((err) => {
-                    swal('System Error!', 'Unable to connect to server, try again later', 'error')
+                    toast.error('Unable to retrieve data')
                 })
         } else {
-            swal('Warning', 'All fields need to be filled', 'warning')
+            toast.warn('All fields need to be filled')
         }
     }
 
@@ -118,7 +110,7 @@ class ManageProduct extends Component {
         Axios.delete(urlApi + 'products/' + idBro)
             .then((res) => {
                 this.getDataProducts()
-                swal('Delete', 'Product deleted', 'success')
+                toast.error('Product deleted!')
             })
             .catch((err) => {
                 console.log(err)
@@ -128,22 +120,30 @@ class ManageProduct extends Component {
     onBtnSaveEdit = () => {
         let newItem = {
             id: this.state.editItem.id,
-            nama: this.refs.editName.value ? this.refs.editName.value : this.state.editItem.nama,
-            harga: this.refs.editPrice.value ? this.refs.editPrice.value : this.state.editItem.harga,
-            category: this.refs.editCategory.value ? this.refs.editCategory.value : this.state.editItem.category,
-            discount: this.refs.editDiscount.value ? this.refs.editDiscount.value : this.state.editItem.discount,
-            deskripsi: this.refs.editDesc.value ? this.refs.editDesc.value : this.state.editItem.deskripsi,
-            img: this.refs.editImg.value ? this.refs.editImg.value : this.state.editItem.img
+            nama: this.state.inputName ? this.state.inputName : this.state.editItem.nama,
+            harga: this.state.inputPrice ? this.state.inputPrice : this.state.editItem.harga,
+            category: this.state.inputCategory ? this.state.inputCategory : this.state.editItem.category,
+            discount: this.state.inputDiscount ? this.state.inputDiscount : this.state.editItem.discount,
+            deskripsi: this.state.inputDesc ? this.state.inputDesc : this.state.editItem.deskripsi,
+            img: this.state.inputImg ? this.state.inputImg : this.state.editItem.img
         }
 
         Axios.put(urlApi + 'products/' + this.state.editItem.id, newItem)
             .then(res => {
+                toast.success('Product updated!')
                 this.getDataProducts()
-                swal('Edit Success', 'Your item has been updated', 'success')
+                this.setState({
+                        inputName : '',
+                        inputPrice : 0,
+                        inputCategory : '',
+                        inputDiscount : 0,
+                        inputImg : '',
+                        inputDesc : ''
+                    })
             })
             .catch(err => {
                 console.log(err)
-                swal('Error', 'Ada masalah bro', 'error')
+                toast.error('Unable to retrieve data')
             })
 
         this.setState({ editMode: false, editItem: null })
@@ -157,6 +157,11 @@ class ManageProduct extends Component {
 
         return (
             <div className="container">
+                {/*TOAST*/}
+                <div>
+                    <ToastContainer position="top-center" closeOnClick autoClose={3000} />
+                </div>
+                
                 {/* Modal */}
                 {this.state.editMode ?
                     <MDBModal isOpen={this.state.editMode} centered>
@@ -166,28 +171,28 @@ class ManageProduct extends Component {
                         <MDBModalBody className='p-4'>
                                     <div className="row my-n3">
                                         <div className="col-12">
-                                            <MDBInput outline label='Product Name' type="text" ref="editName" value={this.state.editItem.nama} />
+                                            <MDBInput outline label='Product Name' type="text" onChange={(e)=>this.setState({inputName:e.target.value})} hint={this.state.editItem.nama} />
                                         </div>
                                     </div>
                                     <div className="row my-n3">
                                         <div className="col-8">
-                                            <MDBInput outline label='Price' type="number" ref="editPrice" value={this.state.editItem.harga} />
+                                            <MDBInput outline label='Price' type="number" onChange={(e)=>this.setState({inputPrice:e.target.value})} hint={this.state.editItem.harga} />
                                         </div>
                                         <div className="col-4">
-                                            <MDBInput outline label='Discount' type="number" ref="editDiscount" value={this.state.editItem.discount} />
+                                            <MDBInput outline label='Discount' type="number" onChange={(e)=>this.setState({inputDiscount:e.target.value})} hint={this.state.editItem.discount} />
                                         </div>
                                     </div>
                                     <div className="row my-n3">
                                         <div className="col-4">
-                                            <MDBInput outline label='Category' type="text" ref="editCategory" value={this.state.editItem.category} />
+                                            <MDBInput outline label='Category' type="text" onChange={(e)=>this.setState({inputCategory:e.target.value})} hint={this.state.editItem.category} />
                                         </div>
                                         <div className="col-8">
-                                            <MDBInput outline label='Image URL' type="text" ref="editImg" value={this.state.editItem.img} />
+                                            <MDBInput outline label='Image URL' type="text" onChange={(e)=>this.setState({inputImg:e.target.value})} hint={this.state.editItem.img} />
                                         </div>
                                     </div>
                                     <div className="row my-n3">
                                         <div className="col-12">
-                                            <MDBInput outline label='Description' type="textarea" ref="editDesc" className='border rounded' rows='3' maxLength='200' style={{resize:'none'}} value={this.state.editItem.deskripsi} />
+                                            <MDBInput outline label='Description' type="textarea" className='border rounded' rows='3' maxLength='200' style={{resize:'none'}} onChange={(e)=>this.setState({inputDesc:e.target.value})} hint={this.state.editItem.deskripsi} />
                                         </div>
                                     </div>
                         </MDBModalBody>
@@ -219,7 +224,7 @@ class ManageProduct extends Component {
                                                 ?
                                                 this.renderProducts()
                                                 :
-                                                <td className='text-center badge-danger' colSpan='7'>There is no item in your cart</td>
+                                                <td className='text-center badge-danger' colSpan='7'>There is no products</td>
                                         }
                                     </MDBTableBody>
                                 </MDBTable>

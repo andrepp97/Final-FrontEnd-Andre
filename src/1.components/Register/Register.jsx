@@ -14,7 +14,7 @@ class Register extends Component {
         name: '',
         pass: '',
         pass2: '',
-        nameError: ``,
+        nameError: '',
         passError: '',
         pass2Error: '',
         show : true

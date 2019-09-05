@@ -3,6 +3,7 @@ import Axios from 'axios'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {urlApi} from '../../2.helpers/database'
+import { Redirect } from 'react-router-dom'
 import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBIcon, MDBTooltip, MDBPagination, MDBPageItem, MDBPageNav, MDBCol, MDBRow, MDBInput }
 from 'mdbreact'
 import { ToastContainer, toast } from 'react-toastify'
@@ -224,6 +225,9 @@ class Cart extends Component {
 
 
     render() {
+        if (this.props.role === '')
+            return <Redirect to="/" />
+
         return (
             <div className="container">
                 {/*TOAST*/}
@@ -406,6 +410,7 @@ const mapStateToProps = state => {
     return {
         id : state.user.id,
         username : state.user.username,
+        role: state.user.role,
         cartUser : state.cart.cartLength
     }
 }

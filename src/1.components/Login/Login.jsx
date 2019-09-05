@@ -75,7 +75,6 @@ class Login extends Component {
 
     componentWillReceiveProps(newProps){
         cookieObj.set('userData', newProps.userObj.username, {path : '/'})
-        // cookieObj.set('userData', newProps.userObj.id, { path: '/' })
     }
 
 
@@ -123,7 +122,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        userObj: state.user        
+        userObj: state.user
     }
 }
 

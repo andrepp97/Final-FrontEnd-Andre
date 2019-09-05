@@ -89,13 +89,21 @@ class NavbarBro extends Component {
                                             </MDBDropdownToggle>
                                             <MDBDropdownMenu right className="dropdown-default">
                                                 <MDBCardText style={{paddingLeft:'24px'}}><span style={{color:'grey', fontSize:'12px'}}>Hello,</span><br/><strong>{this.props.userObj.username}</strong></MDBCardText>
-                                                <MDBDropdownItem divider></MDBDropdownItem>
-
-                                                <MDBDropdownItem className='dropItem' style={{fontSize:'14px'}}><MDBIcon icon="history" />
-                                                <Link style={{textDecoration:'none', marginLeft:'-6px'}} to='/history'>
-                                                    &nbsp;Shopping History
-                                                </Link>
-                                                </MDBDropdownItem>
+                                                
+                                                {
+                                                    this.props.userObj.role === 'admin'
+                                                    ?
+                                                    null
+                                                    :
+                                                    <>
+                                                    <MDBDropdownItem divider></MDBDropdownItem>
+                                                    <MDBDropdownItem className='dropItem' style={{fontSize:'14px'}}><MDBIcon icon="history" />
+                                                    <Link style={{textDecoration:'none', marginLeft:'-6px'}} to='/history'>
+                                                        &nbsp;Shopping History
+                                                    </Link>
+                                                    </MDBDropdownItem>
+                                                    </>
+                                                }
                                                 
                                                 <MDBDropdownItem divider></MDBDropdownItem>
                                                 <MDBDropdownItem className='dropItem' style={{fontSize:'14px'}} onClick={this.onLogout}>

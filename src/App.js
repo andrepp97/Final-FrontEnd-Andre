@@ -12,7 +12,7 @@ import History from './1.components/History/History'
 import AdminPage from './1.components/Admin/AdminPage'
 import Cookie from 'universal-cookie'
 import {connect} from 'react-redux'
-import {keepLogin, cookieChecker, getCartQty} from './redux/1.actions'
+import {keepLogin, cookieChecker} from './redux/1.actions'
 
 
 let cookieObj = new Cookie()
@@ -62,4 +62,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { keepLogin, cookieChecker, getCartQty })(withRouter(App))
+export default connect(mapStateToProps, { keepLogin, cookieChecker })(withRouter(App))
