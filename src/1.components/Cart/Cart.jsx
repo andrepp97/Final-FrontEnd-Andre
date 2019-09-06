@@ -73,9 +73,9 @@ class Cart extends Component {
                         <p className='mt-2'>{new Intl.NumberFormat('id-ID').format(val.price - (val.price * (val.discount / 100)))}</p>
                     </td>
                     <td className='d-flex justify-content-center'><div className="btn-group">
-                        <MDBBtn className='white-text mr-2' color='deep-orange' onClick={() => this.onBtnEditQty('min', idx, val.id)}>-</MDBBtn>
-                        <MDBBtn color='none' className='rounded'>{val.quantity}</MDBBtn>
-                        <MDBBtn className='white-text ml-2' color='deep-orange' onClick={() => this.onBtnEditQty('add', idx)}>+</MDBBtn>
+                        <MDBBtn className='white-text mr-1' color='deep-orange' onClick={() => this.onBtnEditQty('min', idx, val.id)}>-</MDBBtn>
+                        <MDBBtn color='none'>{val.quantity}</MDBBtn>
+                        <MDBBtn className='white-text ml-1' color='deep-orange' onClick={() => this.onBtnEditQty('add', idx)}>+</MDBBtn>
                     </div></td>
                     <td>
                         <p className='mt-2'>{new Intl.NumberFormat('id-ID').format((val.price - (val.price * (val.discount / 100))) * val.quantity)}</p>
@@ -198,7 +198,7 @@ class Cart extends Component {
                     })
                 }
                 this.setState({ isCheckout: !this.state.isCheckout })
-            } else if (this.state.totalPay === totalPrice) {
+            } else {
                 toast.success('Terima kasih telah membayar dengan uang pas!')
                 Axios.post(urlApi + 'history/', newData)
                     .then(res => {

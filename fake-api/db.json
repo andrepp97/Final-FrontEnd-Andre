@@ -17,12 +17,6 @@
       "password": "asd",
       "role": "user",
       "id": 3
-    },
-    {
-      "username": "maria",
-      "password": "asd",
-      "role": "user",
-      "id": 4
     }
   ],
   "products": [
@@ -99,31 +93,20 @@
       "id": 11
     }
   ],
-  "cart": [
-    {
-      "productId": 6,
-      "userId": 4,
-      "quantity": 1,
-      "price": 175000,
-      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/6/3425805/3425805_093b0e12-8607-420c-88e0-970ff47d99f6_600_600.jpg",
-      "discount": 20,
-      "productName": "Celana Formal Slimfit",
-      "id": 9
-    }
-  ],
+  "cart": [],
   "history": [
     {
       "userId": 3,
       "items": [
         {
-          "productId": 4,
+          "productId": 5,
           "userId": 3,
-          "quantity": 2,
-          "price": 55000,
-          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/3/12/32510680/32510680_511b6349-055c-4378-be0d-278be03c37ac_700_700.jpg",
-          "discount": 0,
-          "productName": "Jersey Futsal",
-          "id": 4
+          "quantity": 1,
+          "price": "125000",
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/6/1/12569062/12569062_3e2b8df5-f767-4f08-948e-96c061cd9b7d_466_583.jpg",
+          "discount": "15",
+          "productName": "Kaos Adios",
+          "id": 10
         },
         {
           "productId": 6,
@@ -133,49 +116,39 @@
           "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/6/3425805/3425805_093b0e12-8607-420c-88e0-970ff47d99f6_600_600.jpg",
           "discount": 20,
           "productName": "Celana Formal Slimfit",
-          "id": 6
-        },
-        {
-          "productId": 11,
-          "userId": 3,
-          "quantity": 1,
-          "price": "175000",
-          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/8/8/2083033/2083033_f00481c6-780c-4951-9a4d-6d01eae17560_1024_1024.jpg",
-          "discount": "10",
-          "productName": "Skinny Jeans Black",
-          "id": 7
+          "id": 11
         }
       ],
-      "time": "2019-9-4",
-      "totalPrice": 407500,
-      "recipient": "Manuel",
+      "time": "2019-9-6",
+      "totalPrice": 246250,
+      "recipient": "Mas Bambang",
       "address": "Jl. Kita Masih Panjang",
-      "zipcode": "998877",
-      "totalPay": "410000",
+      "zipcode": "2133",
+      "totalPay": "250000",
       "id": 1
     },
     {
       "userId": 3,
       "items": [
         {
-          "productId": 7,
+          "productId": 10,
           "userId": 3,
           "quantity": 3,
-          "price": "375000",
-          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/6/28/248022/248022_9e935be6-47fa-48dc-b716-b62aab99c2b0_1080_1080.jpg",
-          "discount": "50",
-          "productName": "Celana Renang",
-          "id": 6
+          "price": "125000",
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/7/19/1344997/1344997_2ce57313-9ad6-463e-b401-b7c15c88bb5d_1080_1080.jpg",
+          "discount": "5",
+          "productName": "Jersey Gaming Bigetron",
+          "id": 1
         },
         {
-          "productId": 8,
+          "productId": 6,
           "userId": 3,
-          "quantity": 2,
-          "price": "45000",
-          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/7/26/215949803/215949803_e5827bcf-7816-46ff-8fae-c28e9373ba4c_700_700.jpg",
-          "discount": "0",
-          "productName": "Kaos Turtleneck Longsleeve",
-          "id": 7
+          "quantity": 1,
+          "price": 175000,
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/6/3425805/3425805_093b0e12-8607-420c-88e0-970ff47d99f6_600_600.jpg",
+          "discount": 20,
+          "productName": "Celana Formal Slimfit",
+          "id": 2
         },
         {
           "productId": 9,
@@ -185,16 +158,80 @@
           "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/5/31/587654/587654_12ab2c3c-e1d4-44eb-a17a-a3bc643561be_1000_1000.jpg",
           "discount": "15",
           "productName": "Baju Koko Black Panther",
-          "id": 8
+          "id": 3
         }
       ],
-      "time": "2019-9-5",
-      "totalPrice": 737500,
-      "recipient": "Mas Kiwil",
-      "address": "Jl. Buntu",
-      "zipcode": "999",
-      "totalPay": "800000",
+      "time": "2019-9-6",
+      "totalPrice": 581250,
+      "recipient": "Mr. Children",
+      "address": "Jl. in aja dulu",
+      "zipcode": "007",
+      "totalPay": "600000",
       "id": 2
+    },
+    {
+      "userId": 2,
+      "items": [
+        {
+          "productId": 6,
+          "userId": 2,
+          "quantity": 2,
+          "price": 175000,
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/6/3425805/3425805_093b0e12-8607-420c-88e0-970ff47d99f6_600_600.jpg",
+          "discount": 20,
+          "productName": "Celana Formal Slimfit",
+          "id": 1
+        },
+        {
+          "productId": 10,
+          "userId": 2,
+          "quantity": 1,
+          "price": "125000",
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/7/19/1344997/1344997_2ce57313-9ad6-463e-b401-b7c15c88bb5d_1080_1080.jpg",
+          "discount": "5",
+          "productName": "Jersey Gaming Bigetron",
+          "id": 2
+        },
+        {
+          "productId": 9,
+          "userId": 2,
+          "quantity": 2,
+          "price": "100000",
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/5/31/587654/587654_12ab2c3c-e1d4-44eb-a17a-a3bc643561be_1000_1000.jpg",
+          "discount": "15",
+          "productName": "Baju Koko Black Panther",
+          "id": 3
+        }
+      ],
+      "time": "2019-9-6",
+      "totalPrice": 568750,
+      "recipient": "Mas Uduk",
+      "address": "Jl. Ninjaku",
+      "zipcode": "123",
+      "totalPay": "600000",
+      "id": 3
+    },
+    {
+      "userId": 2,
+      "items": [
+        {
+          "productId": 4,
+          "userId": 2,
+          "quantity": 1,
+          "price": 55000,
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/3/12/32510680/32510680_511b6349-055c-4378-be0d-278be03c37ac_700_700.jpg",
+          "discount": 0,
+          "productName": "Jersey Futsal",
+          "id": 1
+        }
+      ],
+      "time": "2019-9-6",
+      "totalPrice": 55000,
+      "recipient": "ASD",
+      "address": "asasas",
+      "zipcode": "23123",
+      "totalPay": "55000",
+      "id": 4
     }
   ]
 }

@@ -144,11 +144,11 @@ class ProductDetails extends Component {
                                 {
                                     this.props.username !== ''
                                     ?
-                                    <MDBBtn color='indigo' onClick={this.addToCart} className='btn-block white-text'>Add to Cart</MDBBtn>
+                                    <MDBBtn color='deep-orange' onClick={this.addToCart} className='btn-block white-text'>Add to Cart</MDBBtn>
                                     :
                                     <>
                                     <Link to="/Login" style={{textDecoration:'none'}}>
-                                        <MDBBtn className='btn-block'>Add to Cart</MDBBtn>
+                                        <MDBBtn color='deep-orange' className='btn-block white-text'>Login</MDBBtn>
                                     </Link>
                                     </>
                                 }

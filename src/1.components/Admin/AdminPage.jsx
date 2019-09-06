@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import ManageProduct from './ManageProduct';
 import ParaSultan from './ParaSultan';
+import Analytics from './Analytics';
 
 
 class AdminDashboard extends Component {
@@ -20,11 +21,12 @@ class AdminDashboard extends Component {
                 <div>&nbsp;</div>
                 <div className="admin-tab text-center d-flex mt-5 shadow">
                     <div style={{ flex: 1 }} onClick={() => this.setState({ tabMenu: 1 })} className={'admin-tab-menu ' + (this.state.tabMenu === 1 ? "admin-tab-selected" : null)}>Manage Product</div>
-                    <div style={{ flex: 1 }} onClick={() => this.setState({ tabMenu: 2 })} className={'admin-tab-menu ' + (this.state.tabMenu === 2 ? "admin-tab-selected" : null)}>Best Selling Products</div>
+                    <div style={{ flex: 1 }} onClick={() => this.setState({ tabMenu: 2 })} className={'admin-tab-menu ' + (this.state.tabMenu === 2 ? "admin-tab-selected" : null)}>Analytics</div>
                     <div style={{ flex: 1 }} onClick={() => this.setState({ tabMenu: 3 })} className={'admin-tab-menu ' + (this.state.tabMenu === 3 ? "admin-tab-selected" : null)}>Para Sultan</div>
                 </div>
                 <div className="admin-content">
                     {this.state.tabMenu === 1 ? <ManageProduct /> : null}
+                    {this.state.tabMenu === 2 ? <Analytics /> : null}
                     {this.state.tabMenu === 3 ? <ParaSultan /> : null}
                 </div>
             </div>

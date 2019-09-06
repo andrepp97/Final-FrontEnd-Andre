@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import { connect } from 'react-redux'
 import { urlApi } from '../../2.helpers/database'
-import { Redirect } from 'react-router-dom'
-import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBModal, MDBModalHeader, MDBModalBody, MDBBadge }
+import { Redirect, Link } from 'react-router-dom'
+import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBModal, MDBModalHeader, MDBModalBody, MDBBadge, MDBListGroupItem, MDBListGroup }
 from 'mdbreact'
 
 
@@ -11,7 +11,11 @@ class History extends Component {
     state = {
         hisData : [],
         editMode: false,
-        editItem: null
+        editItem: null,
+        tgl: '',
+        penerima: '',
+        alamat: '',
+        kodepos: ''
     }
 
     componentWillReceiveProps(newProps) {
@@ -44,27 +48,24 @@ class History extends Component {
             monthNumb = val.time.split('-')[1]
             realDate = val.time.split('-')[2] + ' ' + monthNames[monthNumb - 1] + ' ' + val.time.split('-')[0]
             return (
-                <tr>
+                <tr className='text-center'>
                     <th scope='row'>
-                        <p className='mt-2'>{realDate}</p>
+                        <p className='mt-2'>{idx + 1}</p>
                     </th>
                     <td>
+                        <p className='mt-2'>{realDate}</p>
+                    </td>
+                    <td>
+                        <p className='mt-2'>{val.items.length}</p>
+                    </td>
+                    <td>
                         <p className='mt-2'>{new Intl.NumberFormat('id-ID').format(val.totalPrice)}</p>
-                    </td>
-                    <td>
-                        <p className='mt-2'>{val.recipient}</p>
-                    </td>
-                    <td>
-                        <p className='mt-2'>{val.address}</p>
-                    </td>
-                    <td>
-                        <p className='mt-2'>{val.zipcode}</p>
                     </td>
                     <td>
                         <p className='mt-2'>{new Intl.NumberFormat('id-ID').format(val.totalPay)}</p>
                     </td>
                     <td className='text-center'>
-                        <MDBBtn color='indigo' className='white-text' onClick={() => this.setState({ editMode: true, editItem: val.items })}>
+                        <MDBBtn color='indigo' className='white-text' onClick={() => this.setState({ editMode: true, editItem: val.items, penerima: val.recipient, alamat: val.address, kodepos: val.zipcode, tgl: realDate  })}>
                             Details
                         </MDBBtn>
                     </td>
@@ -77,7 +78,7 @@ class History extends Component {
     getDetails = () => {
         let silit = this.state.editItem.map((val, idx) => {
             return(
-                <tr>
+                <tr className='text-center'>
                     <th scope='row'>
                         <img src={val.img} alt="Item" height='50px' />
                     </th>
@@ -85,7 +86,7 @@ class History extends Component {
                         <p className='mt-2'>{val.productName}</p>
                     </td>
                     <td>
-                        <p className='mt-2'>{new Intl.NumberFormat('id-ID').format(val.price)}</p>
+                        <p className='mt-2'>{new Intl.NumberFormat('id-ID').format(val.price - (val.price * (val.discount / 100)))}</p>
                     </td>
                     <td>
                         <MDBBadge style={{fontSize:'12px'}} color='deep-orange' className='text-center rounded-circle mt-2'>{val.quantity}</MDBBadge>
@@ -108,13 +109,20 @@ class History extends Component {
                 {this.state.editMode ?
                     <MDBModal isOpen={this.state.editMode} centered>
                         <MDBModalHeader toggle={() => this.setState({ editMode: false, editItem: null })}>
-                            Detail Pesanan
+                            Details <span className='font-small'>({this.state.tgl})</span>
                         </MDBModalHeader>
                         <MDBModalBody className='p-4'>
+                            <MDBListGroup className='mb-4'>
+                                <MDBListGroupItem><strong>Recipient :</strong> &nbsp;{this.state.penerima}</MDBListGroupItem>
+                                <MDBListGroupItem><strong>Address &nbsp;&nbsp;&nbsp;:</strong> &nbsp;{this.state.alamat}</MDBListGroupItem>
+                                <MDBListGroupItem><strong>Postal Code &nbsp;:</strong> &nbsp;{this.state.kodepos}</MDBListGroupItem>
+                            </MDBListGroup>
+
                             <MDBTable hover responsive>
                                 <MDBTableHead color='dark'>
-                                    <tr>
-                                        <th colSpan='2' className='text-center'>Items</th>
+                                    <tr className='text-center'>
+                                        <th>Img</th>
+                                        <th>Item</th>
                                         <th>Price</th>
                                         <th>Qty</th>
                                     </tr>
@@ -130,14 +138,13 @@ class History extends Component {
                 <h2 className='text-center border-bottom pb-3'>Shopping History</h2>
                 <MDBTable hover responsive className="mt-4">
                     <MDBTableHead color='dark'>
-                        <tr>
+                        <tr className='text-center'>
+                            <th>#</th>
                             <th>Date</th>
+                            <th>Items</th>
                             <th>Total Price</th>
-                            <th>Recipient</th>
-                            <th>Address</th>
-                            <th>ZIP Code</th>
                             <th>Total Pay</th>
-                            <th className='text-center'>Action</th>
+                            <th>Action</th>
                         </tr>
                     </MDBTableHead>
                     <MDBTableBody>
@@ -146,8 +153,11 @@ class History extends Component {
                                 ?
                                 this.renderHistory()
                                 :
-                                <td className='text-center badge-danger' colSpan='7'>
-                                    You have no shopping history
+                                <td className='text-center badge-danger' colSpan='6'>
+                                    You have no shopping history.
+                                    <Link to='/'>
+                                        <MDBBtn color='deep-orange' className='ml-3 white-text'>Go Shopping</MDBBtn>
+                                    </Link>
                                 </td>
                         }
                     </MDBTableBody>
