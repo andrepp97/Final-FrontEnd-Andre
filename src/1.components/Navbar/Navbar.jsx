@@ -96,12 +96,17 @@ class NavbarBro extends Component {
                                                     null
                                                     :
                                                     <>
-                                                    <MDBDropdownItem divider></MDBDropdownItem>
-                                                    <MDBDropdownItem className='dropItem' style={{fontSize:'14px'}}><MDBIcon icon="history" />
-                                                    <Link style={{textDecoration:'none', marginLeft:'-6px'}} to='/history'>
-                                                        &nbsp;Shopping History
-                                                    </Link>
-                                                    </MDBDropdownItem>
+                                                        <MDBDropdownItem divider></MDBDropdownItem>
+                                                        <MDBDropdownItem className='dropItem' style={{fontSize:'14px'}}><MDBIcon fab icon="gratipay" />
+                                                            <Link style={{textDecoration:'none', marginLeft:'-6px'}} to='/wishlist'>
+                                                                &nbsp;My Wishlist
+                                                            </Link>
+                                                        </MDBDropdownItem>
+                                                        <MDBDropdownItem className='dropItem' style={{fontSize:'14px'}}><MDBIcon icon="history" />
+                                                            <Link style={{textDecoration:'none', marginLeft:'-6px'}} to='/history'>
+                                                                &nbsp;Shopping History
+                                                            </Link>
+                                                        </MDBDropdownItem>
                                                     </>
                                                 }
                                                 

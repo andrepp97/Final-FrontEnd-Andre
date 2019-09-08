@@ -9,6 +9,7 @@ import Regis from './1.components/Register/Register'
 import ProductDetails from './1.components/ProductDetails/ProductDetails'
 import Cart from './1.components/Cart/Cart'
 import History from './1.components/History/History'
+import Wishlist from './1.components/Wishlist/Wishlist'
 import AdminPage from './1.components/Admin/AdminPage'
 import Cookie from 'universal-cookie'
 import {connect} from 'react-redux'
@@ -41,6 +42,7 @@ class App extends Component {
           <Route component={ProductDetails} path='/product-details/:id' exact />
           <Route component={Cart} path='/Cart' exact />
           <Route component={History} path='/history' exact />
+          <Route component={Wishlist} path='/wishlist' exact />
           <Route component={AdminPage} path='/adminDashboard' exact />
         </Switch>
         <Footer/>

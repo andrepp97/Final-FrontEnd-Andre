@@ -7,6 +7,7 @@ import { MDBIcon, MDBInput, MDBCardBody, MDBCardTitle, MDBCardText, MDBBtn, MDBT
 import 'react-toastify/dist/ReactToastify.min.css'
 import { ToastContainer, toast } from 'react-toastify'
 import { getCartQty } from '../../redux/1.actions'
+import {GlassMagnifier} from "react-image-magnifiers"
 
 
 class ProductDetails extends Component {
@@ -27,9 +28,22 @@ class ProductDetails extends Component {
         .then((res) => {
             console.log(res)
             this.setState({product : res.data})
+
+            Axios.get(urlApi + `wishlist?productId=${this.props.match.params.id}&userId=${this.props.id}`)
+                .then((res) => {
+                    console.log(res)
+                    if (res.data.length > 0) {
+                        this.setState({wishlist:true})
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                    toast.error('nable to retrieve data')
+                })
         })
         .catch((err) => {
             console.log(err)
+            toast.error('Unable to retrieve data')
         })
     }
 
@@ -54,6 +68,7 @@ class ProductDetails extends Component {
                 })
                 .catch((err) => {
                     console.log(err)
+                    toast.error('Unable to retrieve data')
                 })
             }else{
                 Axios.post(urlApi + 'cart', cartObj)
@@ -63,12 +78,53 @@ class ProductDetails extends Component {
                 })
                 .catch((err) => {
                     console.log(err)
+                    toast.error('Unable to retrieve data')
                 })
             }
         })
         .catch((err) => {
-            alert('ERROR', 'Server error, try again later', 'error')
+            toast.error('Unable to retrieve data')
         })
+    }
+
+    addToWish = () => {
+        let newData = {
+            productId: this.state.product.id,
+            userId: this.props.id,
+            img: this.state.product.img,
+            productName: this.state.product.nama
+        }
+        
+        Axios.post(urlApi + 'wishlist', newData)
+        .then(res => {
+            console.log(res)
+            toast.success('Product added to wishlist !')
+            this.setState({ wishlist: !this.state.wishlist })
+            })
+            .catch((err) => {
+                toast.error('Unable to retrieve data')
+            })
+    }
+
+    removeFromWish = () => {
+        var idBro = ''
+        Axios.get(urlApi + `wishlist?productId=${this.props.match.params.id}&userId=${this.props.id}`)
+            .then(res => {
+                idBro = res.data[0].id
+                Axios.delete(urlApi + 'wishlist/' + idBro)
+                    .then((res) => {
+                        console.log(res)
+                        toast.error('Removed from wishlist !')
+                        this.setState({ wishlist: !this.state.wishlist })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                        toast.error('Unable to retrieve data')
+                    })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
 
@@ -79,15 +135,20 @@ class ProductDetails extends Component {
             <div className='container'>
                 {/*TOAST*/}
                 <div>
-                    <ToastContainer position="top-center" closeOnClick autoClose={3000} />
+                    <ToastContainer position="top-center" closeOnClick autoClose={2500} />
                 </div>
                 <div className='mt-5'>&nbsp;</div>
                 <div>&nbsp;</div>
 
                 <div className="row mt-5">
                     <div className='col-md-4 mb-3'>
-                        <div className="card imgCuk" style={{width: '100%'}}>
-                            <img className="card-img-top" src={img} alt="Product" />
+                        <div>
+                            <GlassMagnifier
+                                imageSrc={img}
+                                imageAlt="Product Img"
+                                magnifierSize='50%'
+                                magnifierBorderSize='2'
+                            />
                         </div>
                     </div>
 
@@ -158,15 +219,15 @@ class ProductDetails extends Component {
                                     this.state.wishlist
                                     ?
                                         <MDBTooltip placement="right">
-                                            <MDBBtn color='' className='btn-block' onClick={() => this.setState({ wishlist: !this.state.wishlist })}>
+                                            <MDBBtn color='' className='btn-block' onClick={this.removeFromWish}>
                                                 <MDBIcon icon="heart" style={{ fontSize: '20px', color: 'red', marginTop: '1px' }} />
                                             </MDBBtn>
                                             <div>Remove from Wishlist</div>
                                         </MDBTooltip>
                                     :
                                         <MDBTooltip placement="right">
-                                            <MDBBtn color='dark' className='btn-block' onClick={() => this.setState({ wishlist: !this.state.wishlist })}>
-                                                <MDBIcon far icon="heart" style={{fontSize: '20px', color: 'white', marginTop:'1px'}} />
+                                            <MDBBtn color='' className='btn-block' onClick={this.addToWish}>
+                                                <MDBIcon far icon="heart" style={{fontSize: '20px', marginTop:'1px'}} />
                                             </MDBBtn>
                                             <div>Add to Wishlist</div>
                                         </MDBTooltip>

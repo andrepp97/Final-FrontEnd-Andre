@@ -232,7 +232,7 @@ class Cart extends Component {
             <div className="container">
                 {/*TOAST*/}
                 <div>
-                    <ToastContainer position="top-center" closeOnClick autoClose={3000} />
+                    <ToastContainer position="top-center" closeOnClick autoClose={2500} />
                 </div>
                 
                 <div className='mt-5'>&nbsp;</div>
